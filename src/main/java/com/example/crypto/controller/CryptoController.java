@@ -15,6 +15,6 @@ public class CryptoController
     @GetMapping("/crypto")
     public CryptoDto getCrypto()
     {
-        return cryptoService.getCrypto(); //return
+        return cryptoService.getCrypto();
     }
 }
