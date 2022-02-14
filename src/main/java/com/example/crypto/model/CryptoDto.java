@@ -7,5 +7,8 @@ import lombok.Getter;
 @Builder
 public class CryptoDto
 {
-    private double coinPrice;
+    private double coinPriceInUSD;
+    private double coinPriceInBTC;
+    private double coinPriceInETH;
+    private String coinSymbol;
 }

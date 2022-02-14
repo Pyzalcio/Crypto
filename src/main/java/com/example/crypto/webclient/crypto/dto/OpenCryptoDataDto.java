@@ -5,5 +5,6 @@ import lombok.Getter;
 @Getter
 public class OpenCryptoDataDto
 {
-    private double rateUsd;
+    private OpenCryptoMarketDataDto market_data;
+    private String symbol;
 }

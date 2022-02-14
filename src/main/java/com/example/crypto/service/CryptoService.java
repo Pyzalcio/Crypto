@@ -13,11 +13,14 @@ import org.springframework.web.client.RestTemplate;
 public class CryptoService
 {
     private final CryptoClient cryptoClient;
-    public CryptoDto getCrypto()
+
+    public CryptoDto getCrypto(String coin)
     {
-        return cryptoClient.getExchangeForCoins("bitcoin");
-        //log.info(response);
-        //return null;
+        return cryptoClient.getExchangeForCoins(coin);
+    }
+    public CryptoDto getCrypto(String coin, String filter)
+    {
+        return cryptoClient.getExchangeForCoins(coin);
     }
 
 }

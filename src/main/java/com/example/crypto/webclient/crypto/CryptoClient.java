@@ -8,16 +8,19 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class CryptoClient
 {
-    private static final String CRYPTO_URL = "https://api.coincap.io/v2/";
+    private static final String CRYPTO_URL = "https://data.messari.io/api/v1/assets";
     private RestTemplate restTemplate = new RestTemplate();
     double coinPrice;
 
     public CryptoDto getExchangeForCoins(String coin)
     {
-        OpenCryptoDto openCryptoDto = callGetMethod("rates/{coin}",
+        OpenCryptoDto openCryptoDto = callGetMethod("/{coin}/metrics",
                 OpenCryptoDto.class, coin);
         return CryptoDto.builder()
-                .coinPrice(openCryptoDto.getData().getRateUsd())
+                .coinSymbol(openCryptoDto.getData().getSymbol())
+                .coinPriceInUSD(openCryptoDto.getData().getMarket_data().getPrice_usd())
+                .coinPriceInBTC(openCryptoDto.getData().getMarket_data().getPrice_btc())
+                .coinPriceInETH(openCryptoDto.getData().getMarket_data().getPrice_eth())
                 .build();
         //return response;
     }
