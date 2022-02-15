@@ -28,8 +28,6 @@ public class CryptoController
     @PostMapping("/exchange")
     Exchange createExchange(@RequestBody Exchange toCreate)
     {
-        String fromCoin = cryptoService.getCrypto(toCreate.getFromCoin()).getCoinSymbol();
-        String toCoin = cryptoService.getCrypto(toCreate.getToCoin()).getCoinSymbol();
         double fromCoinValue = cryptoService.getCrypto(toCreate.getFromCoin()).getCoinPriceInUSD();
         double toCoinValue = cryptoService.getCrypto(toCreate.getToCoin()).getCoinPriceInUSD();
         double result = exchangeCoin(toCreate.getAmount(), fromCoinValue, toCoinValue);
@@ -39,7 +37,7 @@ public class CryptoController
 
     private double exchangeCoin(double amount, double fromCoinValue, double toCoinValue)
     {
-        return amount*(fromCoinValue/toCoinValue);
+        return (amount*0.99)*(fromCoinValue/toCoinValue);
     }
 
 }
